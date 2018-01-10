@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <script src="/javascripts/jquery.js"></script>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <table>
+      <thead></thead>
+      <tbody class="tbody">
+        <tr>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+  <script>
+     var i=1;
+    function time(){
+      var start =0;
+      var end = 10;
+     
+    $.ajax({
+      url:'/banner',
+      data:{page:i},
+      success:function(res){
+          // start = start +end;
+          // end+=end;
+          i=i+1;
+          if(!res.length>0){
+            i=1
+          }
+          if(res.length>0){
+            console.log(res[0]);
+            console.log(res[1]);
+          }
+          console.log(i)
+          
+      }
+    })
+    }
+    time();
+   setInterval(function(){
+    time();
+   },2000);
+  </script>
+</html>
