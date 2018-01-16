@@ -8,43 +8,57 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
-    <table>
-      <thead></thead>
-      <tbody class="tbody">
-        <tr>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
+    <div>
+      <table>
+        <thead></thead>
+        <tbody class="tbody">
+          <tr>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+      <input type="text" class="text">
+      <button class="queding">确定</button>
+    </div>
+   
   </body>
   <script>
      var i=1;
-    function time(){
-      var start =0;
-      var end = 10;
-     
-    $.ajax({
-      url:'/banner',
-      data:{page:i},
-      success:function(res){
-          // start = start +end;
-          // end+=end;
-          i=i+1;
-          if(!res.length>0){
-            i=1
+    function time(nums){
+        if(nums){
+          i = nums;
+        }
+        console.log('i--->',i);
+        $.ajax({
+          url:'/banner',
+          data:{page:i},
+          success:function(res){
+            console.log('num',nums)
+            if(!nums){
+              i=i+1;
+            }
+           
+              if(!res.length>0){
+                  i=1
+              }
+             
+              if(res.length>0){
+                console.log(res[0]);
+                console.log(res[1]);
+              }
+              
           }
-          if(res.length>0){
-            console.log(res[0]);
-            console.log(res[1]);
-          }
-          console.log(i)
-          
-      }
-    })
+        })
     }
     time();
    setInterval(function(){
     time();
    },2000);
+  $('.queding').on('click',function(){
+   
+    var input_num = Number($('.text').val()) ;
+    
+    time(input_num);
+  });
   </script>
 </html>

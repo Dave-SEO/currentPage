@@ -18,7 +18,7 @@ exports.banner = function(req, res){
   }
   let sql = 'SELECT title FROM banner_table limit '+start+','+num
   db.query(sql, function (err, data) {
-    console.log(sql)
+  
     if(err){
         res.status(500).send('服务器错误').end()
     }else {
